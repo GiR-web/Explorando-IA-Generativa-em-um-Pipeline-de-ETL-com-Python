@@ -1,12 +1,46 @@
-# Explorando-IA-Generativa-em-um-Pipeline-de-ETL-com-Python
+## Explorando-IA-Generativa-em-um-Pipeline-de-ETL-com-Python
+
+📰 Geração de Notícias Personalizadas
+
+Script Python para criar mensagens personalizadas para usuários a partir de IDs em CSV.
+
+✨ Funcionalidades
+
+📄 Leitura de IDs de usuários de userID.csv com pandas
+
+🌐 Simulação de API para obtenção de dados de usuários (mock)
+
+📝 Geração de mensagens personalizadas
+
+🔄 Mock de atualização de usuários com retorno de sucesso
+
+🚀 Como usar
+## Instale dependências
+pip install pandas requests
+
+## Execute o script
+python main.py
+
+Mensagens personalizadas aparecerão no console.
+
+🔗 Referências
+
+Documentação API OpenAI
+
+Gerar API Key OpenAI
+
+--------
 
 import pandas as pd
 
 df = pd.read_csv('userID.csv')
+
 user_ids = df['UserID'].tolist()
+
 print(user_ids)
 
 import requests
+
 import json
 
 UserID_api_url = "https://exemplo.com"
@@ -21,9 +55,6 @@ def get_user(id):
 users = [user for id in user_ids if (user := get_user(id)) is not None]
 print(json.dumps(users, indent=2))
 
-Documentação Oficial da API OpenAI: https://platform.openai.com/docs/api-reference/introduction
-Informações sobre o Período Gratuito: https://help.openai.com/en/articles/4936830
-
 Para gerar uma API Key:
 1. Crie uma conta na OpenAI
 2. Acesse a seção "API Keys"
@@ -34,16 +65,14 @@ openai_api_key = 'testetesteteste'
 
 import random
 
-# ===============================
-# USUÁRIOS REAIS (mock)
-# ===============================
+USUÁRIOS REAIS (mock)
 
 users = [
     {
         "id": 1,
         "name": "Giovana",
         "news": []
-    },
+    }
     {
         "id": 2,
         "name": "Carlos",
@@ -51,9 +80,7 @@ users = [
     }
 ]
 
-# ===============================
-# FUNÇÃO DE GERAÇÃO DE MENSAGEM
-# ===============================
+FUNÇÃO DE GERAÇÃO DE MENSAGEM
 
 def generate_ai_news(user):
     templates = [
@@ -64,10 +91,8 @@ def generate_ai_news(user):
     ]
 
     return random.choice(templates)
-
-# ===============================
-# PROCESSAMENTO
-# ===============================
+    
+PROCESSAMENTO
 
 for user in users:
     news = generate_ai_news(user)
@@ -76,9 +101,7 @@ for user in users:
         "description": news
     })
 
-# ===============================
-# RESULTADO
-# ===============================
+RESULTADO
 
 for user in users:
     print(f"\nUsuário: {user['name']}")
